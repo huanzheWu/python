@@ -1,11 +1,23 @@
 #-*- coding:utf-8 -*-
 import sys,os
 import http.server
+import subprocess
 
-
- class ServerException(Exception):
+class ServerException(Exception):
 	pass
 
+
+class case_cgi_file(object):
+    def test(self,handler):
+        return os.path.isfile(handler.full_path) and \
+                handler.full_path.endswith('.py')
+    
+    def act(self,handler):
+        handler.run_cgi(handler.full_path)
+
+    def run_cgi(self,full_path):
+        data=subprocess.check_output(["python",handler.full_path])
+        self.send_content(data)
 
 class case_directory_index_file(object):
 	
@@ -59,7 +71,8 @@ class RequestHandler(http.server.BaseHTTPRequestHandler):
 	Cases = [case_no_file,
 		 case_existing_file,
 		case_directory_index_file,
-	 	case_always_fail]
+	    case_cgi_file,
+        case_always_fail]
 
 	Page = """\
 		<html>
