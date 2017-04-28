@@ -1,5 +1,6 @@
 #-*- coding:utf-8 -*-
-import sys,os
+import sys
+import os
 import http.server
 import subprocess
 
@@ -7,22 +8,40 @@ class ServerException(Exception):
 	pass
 
 
-class case_cgi_file(object):
+class case_base(object):
+    def test(self,handler):
+        assert False,'Not implement'
+
+    def act(self,handler):
+        assert False,'Not implement'
+
+    def index_path(self,handler):
+        return os.path.join(handler.full_path,'index.html')
+
+    def handle_file(self,handler,full_path):
+        try:
+            with open (full_path,'rb') as reader:
+                content = reader.read()
+                handler.send_content(content)
+        except IOError as msg:
+            msg = "'{0}' cannot be read:{1}".format(handler.path,msg)
+            handler.handle_error(msg)
+
+
+class case_cgi_file(case_base):
     def test(self,handler):
         return os.path.isfile(handler.full_path) and \
                 handler.full_path.endswith('.py')
     
     def act(self,handler):
-        handler.run_cgi(handler.full_path)
+        handler.run_cgi(handler,handler.full_path)
 
     def run_cgi(self,full_path):
         data=subprocess.check_output(["python",handler.full_path])
         self.send_content(data)
 
-class case_directory_index_file(object):
+class case_directory_index_file(case_base):
 	
-	def index_path(self,handler):
-		return os.path.join(handler.full_path,'index.html')
 	
 	def test(self,handler) :
 		if not os.path.isdir(handler.full_path):
@@ -35,11 +54,11 @@ class case_directory_index_file(object):
 
 
 	def act(self,handler):
-		handler.handle_file(self.index_path(handler))
+		self.handle_file(handler,self.index_path(handler))
 
 
 
-class case_no_file(object):
+class case_no_file(case_base ):
 	
 	def test(self,handler):
 		return not os.path.exists(handler.full_path)
@@ -47,15 +66,15 @@ class case_no_file(object):
 	def act(self,handler):
 		raise ServerException("'{0}' not found ".format(handler.path))
 
-class case_existing_file(object):
+class case_existing_file(case_base):
 	
 	def test(self,handler):
 		return os.path.isfile(handler.full_path)
 	
 	def act(self,handler):
-		handler.handle_file(handler.full_path)
+		self.handle_file(handler,handler.full_path)
 
-class case_always_fail(object):
+class case_always_fail(case_base):
 	
 	def test(self,handler):
 		return True;
@@ -130,15 +149,6 @@ class RequestHandler(http.server.BaseHTTPRequestHandler):
 		#self.send_content(page)
 
 		
-
-	def handle_file(self,full_path):
-		try:
-			with open (full_path,'rb') as reader:
-				content = reader.read()
-			self.send_content(content)
-		except IOError as msg:
-			msg = "'{0}' cannot be read:{1}".format(self.path,msg)
-			self.handle_error(msg)
 
 	def handle_error(self , msg):
 		content = self.Error_Page.format(path=self.path,msg=msg)
