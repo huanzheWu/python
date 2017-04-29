@@ -1,0 +1,24 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+HISTORY_PATH	func/constants.py	/^HISTORY_PATH = os.path.expanduser('~')+os.sep + '.ortonwu_shell_history'$/;"	v
+SHELL_STATUS_RUN	func/constants.py	/^SHELL_STATUS_RUN = 1$/;"	v
+SHELL_STATUS_STOP	func/constants.py	/^SHELL_STATUS_STOP = 0$/;"	v
+built_in_cmds	shell.py	/^built_in_cmds={}$/;"	v
+cd	func/cd.py	/^def cd(args):$/;"	f
+display_cmd_prompt	shell.py	/^def display_cmd_prompt():$/;"	f
+execute	shell.py	/^def execute(cmd_tokens):$/;"	f
+exit	func/exit.py	/^def exit(args):$/;"	f
+getenv	func/getenv.py	/^def getenv(args):$/;"	f
+handler_kill	shell.py	/^def handler_kill(signum,frame):$/;"	f
+history	func/history.py	/^def history(args):$/;"	f
+ignore_signals	shell.py	/^def ignore_signals():$/;"	f
+init	shell.py	/^def init():$/;"	f
+main	shell.py	/^def main():$/;"	f
+preprocess	shell.py	/^def preprocess(tokens):$/;"	f
+register_command	shell.py	/^def register_command(name,func):$/;"	f
+shell_loop	shell.py	/^def shell_loop():$/;"	f
+tokenize	shell.py	/^def tokenize(string):$/;"	f
