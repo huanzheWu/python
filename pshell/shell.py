@@ -15,9 +15,9 @@ def register_command(name,func):
 
 def init():
         register_command("cd",cd)
-#        register_command("exit",exit)
-#        register_command("getenv",getenv)
-#        register_command("history",history)
+        register_command("exit",exit)
+        register_command("getenv",getenv)
+        register_command("history",history)
 
 def display_cmd_prompt():
         usr = getpass.getuser()
