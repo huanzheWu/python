@@ -38,6 +38,87 @@ def test_for():
     print(sum)
 ```
 
+# while 循环语句
+`while`语句来判断循环条件是否成立，如果成立，则执行循环体，执行完成后再次判断条件是否成立，如此循环：
+```
+    i = 0
+    sum = 0
+    while i<100 :
+        sum += i 
+        i+=1
+    print(sum)
+
+```
+每次循环，`i`的值都会增加1，当i=100时`i<100`条件不满足，便退出了循环。
+
+# break 与 continue
+与c语言类似，`break`用于结束`for`或者'while'的循环，而`continue`则跳出当前循环。
+```
+    i = 0 
+    while i < 10:
+        if i == 5: 
+            break
+        print(i,end=" ")
+
+# output : 0 1 2 3 4 
+```
+
+```
+    i = 0
+    while i <10:
+        if i == 5:
+            continue
+        print(i)
+        i+=1
+# output : 0 1 2 3 4 6 7 8 9
+```
+# 循环中的else子句
+
+与C语言不同的是，Python提供与循环搭配的`else子句`,它在如下的情况会被执行：
+- 对于for：迭代完整个循环列表时
+- 对于while：执行条件为false时
+- 如果循环是由于break退出时，则不会执行
+
+例如：
+```
+
+    for i in list(range(10)):
+        for j in list(range(5)):
+            if i == 3: 
+                break
+            
+        else:
+	    print("in this loop ,i is ",i)
+
+# output:
+in this loop ,i is  0
+in this loop ,i is  1
+in this loop ,i is  2
+in this loop ,i is  4
+in this loop ,i is  5
+in this loop ,i is  6
+in this loop ,i is  7
+in this loop ,i is  8
+in this loop ,i is  9
+```
+
+这段代码中有两个嵌套的for循环，注意else子句是与第二个for循环对应的，而不是if语句。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
