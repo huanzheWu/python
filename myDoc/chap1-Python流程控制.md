@@ -1,3 +1,5 @@
+[TOC]
+
 # if语句
 条件判断语句，格式是：
 
@@ -52,7 +54,8 @@ def test_for():
 每次循环，`i`的值都会增加1，当i=100时`i<100`条件不满足，便退出了循环。
 
 # break 与 continue
-与c语言类似，`break`用于结束`for`或者'while'的循环，而`continue`则跳出当前循环。
+与c语言类似，`break`用于结束`for`或者`while`的循环，而`continue`则跳出当前循环，继续进入下一轮循环中.
+
 ```
     i = 0 
     while i < 10:
