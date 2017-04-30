@@ -107,6 +107,47 @@ in this loop ,i is  9
 
 这段代码中有两个嵌套的for循环，注意else子句是与第二个for循环对应的，而不是if语句。
 
+# pass 语句
+`pass` 语句的什么也不做，它作为一个占位符而存在，不影响代码执行的流程。它适合放置在那些语法上需要有语句，但是该语句什么也不用做的场合。例如：
+
+```
+while True:
+	pass 
+
+```
+这是一个可以执行的死循环结构，按下`Ctrl+C`来结束循环。又例如在想自定义一个异常类，不过这个新的异常类不需要新的成员：
+
+```
+ class ServerException(Exception):
+    pass
+
+```
+这里`ServerException`类继承自类`Exception`,它不需要自己实现新的成员。关于继承后面再介绍。
+
+有时候我们在写代码时，喜欢先把接口的名称写出来，搭好整个程序代码流程的框架后再来详细设计接口实现，那么这时也可以使用`pass`来代替函数的实现：
+```
+def init():
+    pass
+
+def draw():
+    pass 
+
+def flush():
+    pass 
+
+def exit():
+    pass
+
+def act():
+    pass()
+    draw()
+    flush()
+    exit()
+```
+
+
+
+
 
 
 
