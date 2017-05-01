@@ -51,6 +51,59 @@ Traceback (most recent call last):
 TypeError: fib() takes 1 positional argument but 2 were given
 ```
 
+# 函数返回值
+尽管函数在定义的时候没有显式地写出函数返回值，但是Python的函数与C语言一致，可以返回数据。默认情况下，函数的返回值为`None`，我们可以使用`print`来吧`fib`函数的返回值打印出来：
+```
+if  __name__ == '__main__': 
+	print(fib(10))
+
+# output: 0 1 1 2 3 5 8 13 21 34 
+None
+
+```
+在执行完函数`fib`后，`print`打印了函数的返回值`None`。我们可以更改`fib`函数的实现，让其返回一个斐波那契数列，而不是把数列打印出来。我们将新函数命名为`getfib`:
+
+```
+def getfib(n):
+    a ,b = 0,1
+    result=[]
+    for i in range(n):
+        result.append(a)
+        a,b = b,a+b
+    return result
+
+if  __name__ == '__main__':
+    arr = getfib(10)
+    print(arr)
+
+# output:[0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
+```
+
+`getfib`函数将斐波那契数列的每一项存储在链表变量`result`中，然后函数返回了这个链表。
+
+在Python中，还可以一次返回"多个"值，例如：
+```
+def returnMore():
+    a =10
+    b ='marry'
+    return a,b
+```
+这实际上是返回了一个Tuple，关于Tuple，我们在数据类型一节中来介绍。
+```
+if  __name__ == '__main__':
+   
+    a =  returnMore()
+    print(a)
+    
+# output: (10, 'marry')
+```
+
+
+
+
+
+
+
 
 
 
