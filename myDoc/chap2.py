@@ -9,5 +9,6 @@ def fib(n):
     print()
 
 if  __name__ == '__main__':
-    
-    fib(10)
+    # error call
+    fib(1,2)
+    #fib(10)
