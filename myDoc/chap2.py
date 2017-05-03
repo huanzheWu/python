@@ -46,6 +46,15 @@ def registerName1(Class,*names):
     for name in names:
         print(name)
 
+def registerNumber(Class  , ** stuNum):
+    print("class {0} 's student number:".format(Class))
+    print(stuNum)
+
+
+
+def returnFunc():
+    return lambda n:n*n
+
 if  __name__ == '__main__':
 
     # error call
@@ -70,4 +79,15 @@ if  __name__ == '__main__':
   #  names = ["barry","larry","nancy","maple"]
   #  registerName(3,names)
   
-  registerName1(3,"barry","larry","nancy","maple")
+  #registerName1(3,"barry","larry","nancy","maple")
+    
+  # registerNumber(3,barry=11234,larry=22341,nancy=22351,maple=99810)
+
+  # stuNum = {'barry':11234,'larry':22341,'nancy':22351,'maple':99810}
+  #  registerNumber(3,**stuNum)
+
+    f = returnFunc()
+    print(f(2))
+    print(f(4))
+
+

@@ -211,6 +211,64 @@ maple
 
 可变参数是把调用函数的参数都封装成一个tuple后传递给函数，因此在函数内部接受到的是一个tuple数据结构。为了使得一个参数成为可变参数，只需要在该参数前面加上`*`即可。
 
+# 关键字参数
+在函数参数前面加上一个`*`便可以成为可变参数，那么加上`**`呢？这就引出了本节的知识点——关键字参数。我们可以对关键字参数赋予0或任意多个`keyword=value`形式的值。考虑现在需要一个函数来录入班级同学的学号，我们需要存储姓名与学号的对应关系：
+```
+
+def registerNumber(Class  , ** stuNum):
+    print("class {0} 's student number:".format(Class))
+    print(stuNum)
+
+if  __name__ == '__main__':
+
+   registerNumber(3,barry=11234,larry=22341,nancy=22351,maple=99810)
+
+#output:
+class 3 's student number:
+{'barry': 11234, 'maple': 99810, 'larry': 22341, 'nancy': 22351}
+```
+
+可以看到，在`registerNumber`函数的内部，实际上接收到是是一个字典数据结构，与可变参数类似，我们也可以自己把数据放在一个字典中，然后来调用函数，调用函数的时候在字典变量前加上`**`便可将它传递给关键字参数：
+
+```
+if  __name__ == '__main__':
+    stuNum = {'barry':11234,'larry':22341,'nancy':22351,'maple':99810}
+    registerNumber(3,**stuNum)
+
+#output:
+class 3 's student number:
+{'maple': 99810, 'barry': 11234, 'larry': 22341, 'nancy': 22351}
+
+```
+同样的道理，如果你这时拥有一个list或者tuple变量，想把它传递给可变参数，只需要在变量前加上`*`即可。
+
+无论是可变参数还是关键字参数，都为函数提供了一种可拓展的能力，有时候我们无法确定参数的个数，例如班级同学的个数是不确定的，这时候它们就派上用场了。如果你使用过C语言的话，我们传递给main函数的参数，都会保存在main函数的argv[]参数里面，这类似于python中的可变参数。
+
+
+
+# Lambda表达式
+Lambda表达式提供了一种创建匿名函数的方法。这种功能在函数式编程语言中出现，可以用于创建匿名函数。在python中，由于语法的限制，Lambda只能写成一行，例如：
+```
+def returnFunc():
+    return lambda n:n*n
+
+
+if  __name__ == '__main__':
+    f = returnFunc()
+    print(f(2))
+    print(f(4))
+# output：
+4
+16
+```
+函数`returnFunc()`返回了一个匿名函数，这个函数赋值给f后就可以调用了，该匿名函数的功能是计算一个数的平方。而Lambda的另一个用途是将一个小函数作为参数来进行传递。关于函数式编程，可以看看
+[阮一峰-函数式编程入门教程](http://www.ruanyifeng.com/blog/2017/02/fp-tutorial.html)
+
+
+(完)
+
+
+
 
 
 
