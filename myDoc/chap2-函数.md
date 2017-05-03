@@ -170,6 +170,46 @@ if  __name__ == '__main__':
 原因是这样的，默认参数只在函数定义的时候被赋予初值。`L`是一个变量，在函数定义时它指向了可变对象`[]`,之后的每次函数调用中，可变对象`[]`i都被添加了一个新整数。所以在使用默认参数时，切记默认参数必须指向不变的对象。
 
 
+# 可变的参数列表
+在Python很容易让函数拥有可变的参数列表。可变参数指的是传递给函数的参数个数是可变的，可以是0个或任意多个。例如现在需要一个函数，来录入一个班级所有同学的名字，一般的做法是我们可以先把这些名字都存储在list或者tuple之后传递给参数：
+```
+def registerName(Class ,names):
+    print("class {0} has students:".format(Class))
+    for name in names:
+        print(name)
+
+if  __name__ == '__main__':
+	names = ["barry","larry","nancy","maple"]
+	registerName(3,names)
+
+# output:
+class 3 has students:
+barry
+larry
+nancy
+maple
+```
+
+而如果使用了可变参数之后，就不需要我们自己封装一个list或tuple来存储学生的名字了，可以这样来调用函数：
+```
+def registerName1(Class,*names):
+    print("class {0} has students:".format(Class))
+    for name in names:
+        print(name)
+
+if  __name__ == '__main__':
+  registerName1(3,"barry","larry","nancy","maple")
+
+#output：
+class 3 has students:
+barry
+larry
+nancy
+maple
+	
+```
+
+可变参数是把调用函数的参数都封装成一个tuple后传递给函数，因此在函数内部接受到的是一个tuple数据结构。为了使得一个参数成为可变参数，只需要在该参数前面加上`*`即可。
 
 
 
