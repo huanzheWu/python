@@ -83,6 +83,78 @@ True
 这个函数返回运算结果小数点后指定位数的精度。
 
 
+# 字符串
+字符串是使用`""`或者`''`括起来的文本，例如`"python"`或者`'python'`。创建一个字符串变量：
+```
+>>> str = 'python'
+>>> str
+'python'
+```
+其中`""`或者`''`并不是字符串的一部分。如果字符串中含有`""`或者`''`，可以使用转义字符`\`来标识：
+```
+>>> str = 'I \'am python' 
+>>> str
+"I 'am python"
+```
+使用`"""`可以来创建多行字符串，例如：
+
+```
+>>> str = """ line 1
+... line 2
+... line 3 """
+>>> str
+' line 1\nline 2\nline 3 '
+>>> 
+```
+
+字符串提供了很多实用的操作，我们来看一下。
+- 切片功能
+
+切片功能可以获取字符串中某一个子串：
+```
+>>> str = "python 是一门动态语言"
+>>> str[0]
+'p'
+>>> str[-1]
+'言'
+>>> str[6:]
+' 是一门动态语言'
+>>> str[:3]
+'pyt'
+>>> str[::-1]
+'言语态动门一是 nohtyp'
+>>> 
+
+```
+当索引为负数时，表示从字符串尾部开始操作。
+
+- 查找
+
+python标准库对字符串提供了很多查找的接口，例如：
+```
+>>> str = "python 是一门动态语言"
+>>> str.find('t')  # 查找字符t，如果有多个t，只返回第一个的下标索引
+2
+>>> str.find('h',2) #从下标索引为2处开始查找字符h
+3 
+>>> str.find('c')  # 查找不到返回-1
+-1
+>>> str.index('是') # 与find类似
+7
+>>> str.index('好') # 与find不同的是，找不到时抛出异常
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+ValueError: substring not found
+>>> 
+``` 
+
+实际上标准库对字符串提供的函数是非常丰富的，包括替换、大小写转换、去空格化、检测是否以某字符开始、以某字符结束，计算字符出现的次数等等，可以在python官方文档查看这些函数，并加以实践[text-sequence-type-str](https://docs.python.org/3.5/library/stdtypes.html#text-sequence-type-str).
+
+
+
+
+
+
 
 
 
